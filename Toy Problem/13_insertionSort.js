@@ -15,3 +15,4 @@ const insertionSort = function (arr, callback = (val) => val) {
   
     return arr;
   };
+  
