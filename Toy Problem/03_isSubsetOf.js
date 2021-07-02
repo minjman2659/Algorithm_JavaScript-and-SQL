@@ -5,8 +5,8 @@ const isSubsetOf = function (base, sample) {
     // 만약 sample의 첫번째 요소가 base에 있을 경우, 그 다음 base를 돌 때는 해당 요소 다음 부터 돌 수 있도록 해야한다. (즉, base에서 잘라가야한다)
     // 아마 반복문은 2개가 사용될 것 같다.
   
-    base.sort();
-    sample.sort();
+    base.sort((a, b) => a - b);
+    sample.sort((a, b) => a - b);
   
     const checkElement = (el, base, from) => {
       for(let i=from; i<base.length; i++) {
