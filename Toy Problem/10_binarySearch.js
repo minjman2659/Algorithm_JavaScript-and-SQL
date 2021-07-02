@@ -4,7 +4,7 @@ const binarySearch = function (arr, target) {
     let high = arr.length-1;
     let low = 0;
   
-    while(arr[high] > arr[low]) {
+    while(high > low) {
       let mid = parseInt((high + low) / 2);
   
       if(target === arr[high]) {
