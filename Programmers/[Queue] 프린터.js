@@ -2,22 +2,22 @@
 
 function solution(priorities, location) {
     
-    let da = [];
+    let tag = [];
     for(let i=0; i<priorities.length; i++) {
-        da.push(i);
+        tag.push(i);
     }
     
-    let daClone = da.slice();
+    let tagClone = tag.slice();
     let document = priorities.slice();
     let queue = [];
-    let daQueue = [];
+    let tagQueue = [];
     
     while(queue.length < priorities.length) {
         queue.push(document.shift());
-        daQueue.push(daClone.shift());
+        tagQueue.push(tagClone.shift());
         if(!isValid(queue[queue.length-1], document)) {
             document.push(queue.pop());
-            daClone.push(daQueue.pop());
+            tagClone.push(tagQueue.pop());
         }
     }
     
@@ -30,8 +30,8 @@ function solution(priorities, location) {
         return true;
     }
     
-    for(let j=0; j<daQueue.length; j++) {
-        if(daQueue[j] === da[location]) {
+    for(let j=0; j<tagQueue.length; j++) {
+        if(tagQueue[j] === tag[location]) {
             return j+1;
         }
     }
