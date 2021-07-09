@@ -50,86 +50,57 @@
 // 1,000부터 9,999까지의 모든 소수들(정점들)을 방문하면서
 // newPwd와 같은 소수(목표 정점)를 찾는데까지 최단 경로를 구해야 하는 BFS 문제이다.
 // => queue를 이용해서 풀자!
+// 최소 몇 개의 숫자를 변경해야 하는지 = 최단 거리를 구해라 => BFS 방식으로 문제를 풀어라!
 
-// 소수 확인 모듈
-const isPrime = (num) => {
-  if (num % 2 === 0) {
-    return false;
-  }
-  let sqrt = parseInt(Math.sqrt(num));
-  for (let divider = 3; divider <= sqrt; divider += 2) {
-    if (num % divider === 0) {
+const primePassword = (curPwd, newPwd) => {
+  // 소수 확인 모듈
+  const isPrime = (num) => {
+    if(num % 2 === 0) {
       return false;
     }
+    let sqrt = parseInt(Math.sqrt(num));
+    for(let i=3; i<=sqrt; i=i+2) {
+      if(num % i === 0) {
+        return false;
+      }
+    }
+    return true;
   }
-  return true;
-};
-
-// 숫자 배열을 만드는 모듈
-const makeNumArr = (num) => {
-  const digits = String(num).split('');
-  return digits.map((el) => Number(el));
-};
-
-// 숫자 만드는 모듈
-const makeNum = (digits) => Number(digits.join(''));
-
-// 본격 bfs 함수
-const primePassword = (curPwd, newPwd) => {
-  if (curPwd === newPwd) {
-    return 0;
+  // 숫자 배열로 만들어주는 모듈
+  const makeNumArr = (num) => {
+    let numStrArr = String(num).split('');
+    return numStrArr.map((el) => Number(el));
   }
-
-  let front = 0;
-  let rear = 0;
-  const queue = [];
-  const isEmpty = (queue) => front === rear;
-  const enQueue = (queue, item) => {
-    queue.push(item);
-    rear++;
-  };
-  const deQueue = (queue) => {
-    const item = queue[front];
-    front++;
-    return item;
-  };
-  // 한 번 방문한 숫자는 또 방문할 필요가 없기 때문에 체킹 진행
-  const check = Array(10000).fill(false);
+  // 숫자로 만들어주는 모듈
+  const makeNum = (arr) => {
+    return Number(arr.join(''));
+  }
+  // 본격 BFS 시작
+  const check = new Array(10000).fill(false);
   check[curPwd] = true;
-  // bfs를 위한 시작점
-  // 큐에는 [필요한 동작 수, 비밀번호]가 저장된다.
-  enQueue(queue, [0, curPwd]);
-  // bfs는 큐가 빌(empty) 때까지 탐색한다.
-  while (isEmpty(queue) === false) {
-    const [step, num] = deQueue(queue);
-    // 각 자리수 마다 변경이 가능하므로 4번의 반복이 필요하다.
-    for (let i = 0; i < 4; i++) {
-      const digits = makeNumArr(num);
-      // 0부터 9까지 시도한다.
-      for (let d = 0; d < 10; d++) {
-        // 각 자리수마다 원래 있던 수(digits[i])는 피해야 한다.
-        if (d !== digits[i]) {
-          // 현재 자리수의 수를 변경하고,
-          digits[i] = d;
-          // 변경한 후 4자리 수를 구한다.
-          const next = makeNum(digits);
-          // 만약 이 수가 새 비밀번호와 같다면 리턴한다.
-          if (next === newPwd) {
-            return step + 1;
-          }
-          // 1,000보다 큰 소수여야 하고, 방문된 적이 없어야 한다.
-          if (next > 1000 && isPrime(next) && check[next] === false) {
-            // 방문 여부를 표시하고,
-            check[next] = true;
-            // 큐에 넣는다.
-            enQueue(queue, [step + 1, next]);
+  const queue = [];
+
+  queue.push([0, curPwd]);
+  while(queue.length > 0) {
+    let [count, now] = queue.shift();
+    if(now === newPwd) {
+      return count;
+    }
+    
+    for(let i=0; i<4; i++) {
+      let nowArr = makeNumArr(now);
+      for(let j=0; j<10; j++) {
+        if(j !== nowArr[i]) {
+          nowArr[i] = j;
+          let nowNum = makeNum(nowArr);
+          if(nowNum > 1000 && isPrime(nowNum) && check[nowNum] === false) {
+            check[nowNum] = true;
+            queue.push([count+1, nowNum]);
           }
         }
       }
     }
   }
 
-  // 큐가 빌 때까지, 즉 모든 경우의 수를 탐색할 때까지 리턴되지 않은 경우
-  // 현재 비밀번호에서 새 비밀번호를 만들 수 없다.
   return -1;
 };
