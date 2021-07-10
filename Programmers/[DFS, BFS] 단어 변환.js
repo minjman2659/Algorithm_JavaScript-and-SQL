@@ -1,5 +1,7 @@
 // https://programmers.co.kr/learn/courses/30/lessons/43163
 
+// 'Toy Problem_15.PrimePassword' 문제와 비슷
+
 function solution(begin, target, words) {
     if(!words.includes(target)) {
         return 0;

@@ -1,5 +1,7 @@
 // https://programmers.co.kr/learn/courses/30/lessons/43162
 
+// 'URclass_자료구조_[BFS/DFS]연결된 정점들' 문제와 비슷
+
 function solution(n, computers) {
     // 주어진 computers는 인접 행렬
     let check = new Array(n).fill(false);
