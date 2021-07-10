@@ -1,7 +1,5 @@
 // https://urclass.codestates.com/codeproblem/bddd30d8-44c1-4039-8c49-134555c03552
 
-// Unsolved yet
-
 const getItemFromTwoSortedArrays = function (arr1, arr2, k) {
     // O(logN)의 시간복잡도 문제 풀이는 나중에 풀어보자...!
   
