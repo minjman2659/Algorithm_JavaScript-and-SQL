@@ -1,35 +1,43 @@
 // https://leetcode.com/problems/3sum/
 
-// Unsolved yet
-
 /**
  * @param {number[]} nums
  * @return {number[][]}
  */
  var threeSum = function(nums) {
-    let result = [];
     if(nums.length < 3) {
-        return result;
+        return [];
     }
     
-    nums.sort((a, b) => a - b);
-    
-    let icheck = new Array(nums.length).fill(false);
-    let jcheck = new Array(nums.length).fill(false);
-    let kcheck = new Array(nums.length).fill(false);
+    const result = [];
+    nums.sort((a , b) => a - b);
     
     for(let i=0; i<nums.length; i++) {
-        for(let j=i+1; j<nums.length; j++) {
-            for(let k=j+1; k<nums.length; k++) {
-                if(nums[i] + nums[j] + nums[k] === 0 && icheck[i] === false && jcheck[j] === false && kcheck[k] === false) {
-                    result.push([nums[i], nums[j], nums[k]]);
-                    icheck[i] = true;
-                    jcheck[j] = true;
-                    kcheck[k] = true;
+        let left = i+1;
+        let right = nums.length-1;
+        while(left < right) {
+            let sum = nums[i] + nums[left] + nums[right];
+            if(sum === 0) {
+                result.push([nums[i], nums[left], nums[right]]);
+                while(nums[left] === nums[left+1]) {
+                    left++;
                 }
+                while(nums[right] === nums[right-1]) {
+                    right--;
+                }
+                left++;
+                right--;
+            } else if(sum > 0) {
+                right--;
+            } else {
+                left++;
             }
+        }
+        while(nums[i] === nums[i+1]) {
+            i++;
         }
     }
     
     return result;
+    
 };
