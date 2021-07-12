@@ -34,5 +34,5 @@ function solution(answers) {
         result.push(3);
     }
     
-    return result.sort((a, b) => a - b);
+    return result;
 }
