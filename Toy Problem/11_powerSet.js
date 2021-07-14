@@ -14,9 +14,9 @@ const powerSet = function (str) {
     arr.sort();
   
     // --------------------------------------------------------------------
-    // 본격적인 순열
-    let result = [];
-    let check = new Array(arr.length).fill(false);
+    // 본격적인 부분집합
+    const result = [];
+    const check = new Array(arr.length).fill(false);
   
     function arrCheck(startNum) {
       for(let i=startNum; i<arr.length; i++) {
