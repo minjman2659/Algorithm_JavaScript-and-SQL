@@ -19,14 +19,17 @@ const inequalityNumber = function (signs) {
         if (sign === '>' && left <= right) continue;
       }
       isVisited[right] = true;
-      const target = aux(idx + 1, signs, result.concat(right), digits, isVisited);
-      if (target !== undefined) {
+      result.push(right);
+      const target = aux(idx + 1, signs, result, digits, isVisited);
+      if (target !== false) {
         return target;
+      } else {  // 만약 체킹에서 false가 뜰 경우, 원상태로 돌리고 다음 digits의 요소로 넘어간다.
+        isVisited[right] = false;
+        result.pop();
       }
-      isVisited[right] = false;
     }
 
-    return undefined;
+    return false;
   };
 
   signs = signs.split(' ');
