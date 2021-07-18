@@ -19,6 +19,7 @@ function solution(brown, yellow) {
     for(let el of result) {    // el[0] = 세로, el[1] = 가로
            if((el[0]-2) * (el[1]-2) === yellow) {
                return [el[1], el[0]];
+               break;
            }
     }
 }
