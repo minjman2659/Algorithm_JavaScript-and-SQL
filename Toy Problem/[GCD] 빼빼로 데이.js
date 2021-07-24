@@ -13,7 +13,7 @@ function divideChocolateStick(M, N) {
     }
   
     let gcd = GCD(M, N);
-    let sqrt = Math.sqrt(gcd);
+    let sqrt = parseInt(Math.sqrt(gcd));
   
     // 최대공약수의 약수들은 모두 공약수
     // 시간 복잡도 O(log n)으로 나타내기 위해서 gcd를 절반으로 나눈 후 반복문의 연산 횟수를 줄인다.
