@@ -33,7 +33,7 @@ const largestRectangularArea = function (histogram) {
         return tree.idx;
       }
       if(rs > te || re < ts) {
-        return rs;
+        return rs;  // re 도 가능  =>  왜 꼭 rs 혹은 re를 리턴해야 할까??
       }
   
       const mid = parseInt((ts+te)/2);
