@@ -7,6 +7,9 @@
 const knapsack = function (weight, items) {  
     // 먼저 items의 요소들 중 weight를 벗어나는 요소들은 제외시킨다.
     items = items.filter((el) => el[0] <= weight);
+    if(items.length === 0) {
+        return 0;
+    }
 
     // 부분집합 모듈
     function powerSet(arr) {
