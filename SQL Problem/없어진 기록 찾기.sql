@@ -1,4 +1,4 @@
-// https://programmers.co.kr/learn/courses/30/lessons/59042
+-- https://programmers.co.kr/learn/courses/30/lessons/59042
 
 SELECT ANIMAL_OUTS.ANIMAL_ID, ANIMAL_OUTS.NAME
 FROM ANIMAL_OUTS
