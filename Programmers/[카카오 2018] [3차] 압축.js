@@ -14,8 +14,8 @@ function solution(msg) {
     let m = i;
     let tmp = msg[i];
     while (tmp in obj) {
-      if (!msg[m + 1]) tmp += '!';
       // msg의 마지막 인덱스일 경우
+      if (!msg[m + 1]) tmp += '!';
       else tmp += msg[++m];
     }
     let copied = tmp.split('');
