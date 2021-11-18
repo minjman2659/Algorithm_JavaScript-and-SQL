@@ -9,8 +9,7 @@ function solution(left, right) {
   return result;
 
   function divisor(num) {
-    if (num === 1) return 1;
-    if (num === 2) return 2;
+    if (num <= 2) return num;
     let sqrt = parseInt(Math.sqrt(num));
     let count = 2; // 1과 자기자신은 항상 포함
     for (let j = 2; j <= sqrt; j++) {
