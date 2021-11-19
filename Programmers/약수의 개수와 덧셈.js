@@ -1,23 +1,16 @@
 // https://programmers.co.kr/learn/courses/30/lessons/77884
 
 function solution(left, right) {
+  // 제곱근이 1로 나누어 떨어진다는 것은, 약수 중 같은 것이 두개 있다는 의미
+  // ex) 4의 약수 => [1, 2, 4] === 홀수
   let result = 0;
   for (let i = left; i <= right; i++) {
-    if (divisor(i) % 2 === 0) result += i;
-    else result -= i;
-  }
-  return result;
-
-  function divisor(num) {
-    if (num <= 2) return num;
-    let sqrt = parseInt(Math.sqrt(num));
-    let count = 2; // 1과 자기자신은 항상 포함
-    for (let j = 2; j <= sqrt; j++) {
-      if (num % j === 0) {
-        if (num / j === j) count++;
-        else count += 2;
-      }
+    if (Math.sqrt(i) % 1 === 0) {
+      result -= i;
+    } else {
+      result += i;
     }
-    return count;
   }
+
+  return result;
 }
