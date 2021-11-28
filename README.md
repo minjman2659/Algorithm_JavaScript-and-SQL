@@ -1,1 +1,1 @@
-# Algorithm Solving With Javascript
+# Algorithm Solving With Javascript and SQL
