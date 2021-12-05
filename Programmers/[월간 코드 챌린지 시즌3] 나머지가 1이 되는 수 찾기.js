@@ -5,3 +5,5 @@ function solution(n) {
     if (n % i === 1) return i;
   }
 }
+
+// 맥북 테스트
