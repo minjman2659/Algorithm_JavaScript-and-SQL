@@ -1,5 +1,5 @@
 // https://www.acmicpc.net/problem/10819
-
+// 완전탐색
 function solution(N, arr) {
   let result = 0;
 
