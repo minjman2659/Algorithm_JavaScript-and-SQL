@@ -1,7 +1,5 @@
 // https://www.acmicpc.net/problem/2667
 
-// https://www.acmicpc.net/problem/2667
-
 function solution(N, matrix) {
   const homes = [];
   let count = 0;
