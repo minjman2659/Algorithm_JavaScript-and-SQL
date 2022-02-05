@@ -1,3 +1,5 @@
+// https://programmers.co.kr/learn/courses/30/lessons/92344
+
 function solution(board, skill) {
   // 누적합 문제
   // 누적합을 위한 sumMatrix를 정의한 후 우향 => 하향 으로 값을 누적해서 더해간다.
