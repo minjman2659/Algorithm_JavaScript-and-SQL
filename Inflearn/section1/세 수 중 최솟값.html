@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 오로지 if문으로만 풀기
+      function solution(a, b, c) {
+        let result;
+
+        if (a < b) {
+          result = a;
+        } else {
+          result = b;
+        }
+
+        if (c < result) {
+          result = c;
+        }
+
+        return result;
+      }
+
+      console.log(solution(2, 5, 1));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 삼각형의 가장 긴 변이 다른 두 변의 합보다 작아야 삼각형이 만들어질 수 있다.
+      function solution(a, b, c) {
+        let result, max;
+        const total = a + b + c;
+
+        if (a < b) max = b;
+        else max = a;
+
+        if (max < c) max = c;
+
+        result = total - max > max ? 'YES' : 'NO';
+
+        return result;
+      }
+
+      console.log(solution(6, 7, 11));
+      console.log(solution(13, 33, 17));
+    </script>
+  </body>
+</html>
