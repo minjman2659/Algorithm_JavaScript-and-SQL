@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let sum = 0;
+        let min = Number.MAX_SAFE_INTEGER;
+
+        const isOdd = (num) => {
+          if (num % 2 === 0) return false;
+          return true;
+        };
+
+        for (let num of arr) {
+          if (isOdd(num)) {
+            sum += num;
+            if (num < min) min = num;
+          }
+        }
+
+        console.log(sum);
+        console.log(min);
+      }
+
+      arr = [12, 77, 38, 41, 53, 92, 85];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
