@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const result = s.reduce((max, cur) => {
+          if (max.length < cur.length) {
+            max = cur;
+          }
+          return max;
+        }, '');
+
+        return result;
+      }
+      let str = ['teacher', 'time', 'student', 'beautiful', 'good'];
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
