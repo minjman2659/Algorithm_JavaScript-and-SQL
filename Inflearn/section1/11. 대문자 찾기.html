@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const regex = /[A-Z]/g;
+        const matched = s.match(regex);
+        console.log(matched);
+        return matched.length;
+      }
+
+      let str = 'KoreaTimeGood';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
