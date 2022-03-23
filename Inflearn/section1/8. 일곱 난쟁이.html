@@ -6,24 +6,19 @@
   <body>
     <script>
       function solution(arr) {
-        const result = [];
-        arr.sort();
-        let sum = 0;
-        for (let num of arr) {
-          if (sum + num < 100) {
-            sum += num;
-            result.push(num);
-          }
-          if (sum + num > 100) {
-            continue;
-          }
-          if (sum + num === 100) {
-            result.push(num);
-            break;
+        const result = [...arr];
+        const sum = arr.reduce((acc, cur) => acc + cur, 0);
+
+        for (let i = 0; i < 8; i++) {
+          for (let j = i + 1; j < 9; j++) {
+            if (sum - (result[i] + result[j]) === 100) {
+              // 뒤의 인덱스를 먼저 splice 해야 앞의 것의 인덱스가 변하지 않음
+              result.splice(j, 1);
+              result.splice(i, 1);
+              return result;
+            }
           }
         }
-
-        return result;
       }
 
       let arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
