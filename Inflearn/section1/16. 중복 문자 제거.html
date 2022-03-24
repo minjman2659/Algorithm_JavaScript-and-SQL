@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const splitedS = s.split('');
+        const result = splitedS.filter(
+          (str, idx) => splitedS.indexOf(str) === idx
+        );
+
+        return result.join('');
+      }
+      console.log(solution('ksekkset'));
+    </script>
+  </body>
+</html>

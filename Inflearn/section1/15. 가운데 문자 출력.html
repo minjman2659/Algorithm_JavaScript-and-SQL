@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const mid = parseInt(s.length / 2);
+
+        if (s.length % 2 === 1) {
+          return s.slice(mid, mid + 1);
+        }
+        return s.slice(mid - 1, mid + 1);
+      }
+      console.log(solution('study'));
+      console.log(solution('good'));
+      console.log(solution('oo'));
+    </script>
+  </body>
+</html>
