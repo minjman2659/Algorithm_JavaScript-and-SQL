@@ -6,9 +6,29 @@
   <body>
     <script>
       function solution(arr) {
-        let answer = Number.MIN_SAFE_INTEGER;
+        const N = arr.length;
+        let max = 0;
+        let crossCand1 = 0;
+        let crossCand2 = 0;
 
-        return answer;
+        for (let i = 0; i < N; i++) {
+          let rowCand = 0;
+          let colCand = 0;
+          crossCand1 += arr[i][i];
+
+          for (let j = 0; j < N; j++) {
+            rowCand += arr[i][j];
+            colCand += arr[j][i];
+          }
+
+          max = Math.max(max, rowCand, colCand, crossCand1);
+        }
+
+        for (let i = N - 1; i >= 0; i--) {
+          crossCand2 += arr[i][i];
+        }
+
+        return Math.max(max, crossCand2);
       }
 
       let arr = [
