@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        const result = [];
+        const N = arr.length;
+        const copy = [...arr];
+        copy.sort((a, b) => b - a);
+        const scoreTempArr = new Array(N).fill(1);
+
+        let rank = 1;
+
+        for (let i = 1; i < N; i++) {
+          if (copy[i] !== copy[i - 1]) {
+            rank++;
+          }
+          scoreTempArr[i] = rank;
+        }
+
+        for (let score of arr) {
+          result.push(scoreTempArr[copy.indexOf(score)]);
+        }
+
+        return result;
+      }
+
+      let arr = [87, 89, 92, 100, 76];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>

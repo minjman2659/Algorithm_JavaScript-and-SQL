@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let result = 0;
+        let accScore = 0;
+
+        for (let el of arr) {
+          if (el === 1) {
+            accScore++;
+            result += accScore;
+          } else {
+            accScore = 0;
+          }
+        }
+
+        return result;
+      }
+
+      let arr = [1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
