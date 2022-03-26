@@ -6,23 +6,15 @@
   <body>
     <script>
       function solution(arr) {
-        const result = [];
         const N = arr.length;
-        const copy = [...arr];
-        copy.sort((a, b) => b - a);
-        const scoreTempArr = new Array(N).fill(1);
+        const result = new Array(N).fill(1);
 
-        let rank = 1;
-
-        for (let i = 1; i < N; i++) {
-          if (copy[i] !== copy[i - 1]) {
-            rank++;
+        for (let i = 0; i < N; i++) {
+          for (let j = 0; j < N; j++) {
+            if (arr[i] < arr[j]) {
+              result[i]++;
+            }
           }
-          scoreTempArr[i] = rank;
-        }
-
-        for (let score of arr) {
-          result.push(scoreTempArr[copy.indexOf(score)]);
         }
 
         return result;
