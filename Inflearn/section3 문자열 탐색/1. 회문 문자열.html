@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const mid = parseInt(s.length / 2);
+        const lowerS = s.toLowerCase();
+
+        // 1.
+        // for (let i = 0; i < mid; i++) {
+        //   if (lowerS[i] !== lowerS[lowerS.length - 1 - i]) {
+        //     return 'NO';
+        //   }
+        // }
+
+        // return 'YES';
+
+        // 2.
+        const reverseS = lowerS.split('').reverse().join('');
+        return lowerS === reverseS ? 'YES' : 'NO';
+      }
+
+      let str = 'gooOG';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const lowerS = s.toLowerCase();
+        const regex = /[^a-z]/g;
+        const onlyAlphabet = lowerS.replace(regex, '');
+        const reverseS = onlyAlphabet.split('').reverse().join('');
+
+        return onlyAlphabet === reverseS ? 'YES' : 'No';
+      }
+
+      let str = 'found7, time: study; Yduts; emit, 7Dnuof';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
