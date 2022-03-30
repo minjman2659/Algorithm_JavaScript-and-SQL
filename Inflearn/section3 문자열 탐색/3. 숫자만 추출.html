@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        const regex = /[^0-9]/g;
+        const onlyNum = str.replace(regex, '');
+
+        return Number(onlyNum);
+      }
+
+      let str = 'g0en2T0s8eSoft';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 시간복잡도 O(n) 밖에 안걸리는 풀이
+      function solution(s, t) {
+        const result = new Array(s.length).fill(0);
+        let P = 101; // 큰 수 아무거나 할당
+
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === t) {
+            result[i] = 0;
+            P = 0;
+          } else {
+            result[i] = ++P;
+          }
+        }
+
+        for (let i = s.length - 1; i >= 0; i--) {
+          if (s[i] === t) {
+            P = 0;
+          } else {
+            result[i] = Math.min(++P, result[i]);
+          }
+        }
+
+        return result;
+      }
+
+      let str = 'teachermode';
+      console.log(solution(str, 'e'));
+    </script>
+  </body>
+</html>
