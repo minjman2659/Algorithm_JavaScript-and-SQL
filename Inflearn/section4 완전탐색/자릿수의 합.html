@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        let candidates = [];
+        let max = 0;
+
+        for (let num of arr) {
+          const temp = (num + '').split('');
+          const sum = temp.reduce((acc, cur) => acc + Number(cur), 0);
+          if (max < sum) {
+            candidates = [num];
+          }
+          if (max === sum) {
+            candidates.push(num);
+          }
+          max = Math.max(sum, max);
+        }
+
+        return Math.max(...candidates);
+      }
+
+      let arr = [128, 460, 603, 40, 521, 137, 123];
+      console.log(solution(7, arr));
+    </script>
+  </body>
+</html>
