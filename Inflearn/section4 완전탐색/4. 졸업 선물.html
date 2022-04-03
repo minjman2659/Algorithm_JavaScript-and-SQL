@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 각 상품의 가격이 50% 할인일 경우를 완전탐색으로 살펴보고
+      // 각 경우의 수에 따라 최대 구매할 수 있는 경우의 수를 구한다.
+      function solution(m, product) {
+        const N = product.length;
+        let result = 0;
+
+        for (let arr of product) {
+          arr[0] = arr[0] / 2;
+          product.sort((a, b) => a[0] - b[0]);
+
+          let sum = 0;
+          let count = 0;
+          for (let i = 0; i < N; i++) {
+            sum += product[i][0] + product[i][1];
+            if (sum > m) {
+              sum -= product[i][0] + product[i][1];
+              break;
+            }
+            count++;
+          }
+
+          result = Math.max(result, count);
+          arr[0] = arr[0] * 2;
+        }
+
+        return result;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>
