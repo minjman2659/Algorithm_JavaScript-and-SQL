@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 그냥 sort를 쓸 경우 O(n*log^n)
+      // 반면에 투포인터를 쓸 경우 O(n+m)
+      // 곱셈이 들어가면 시간복잡도가 커지므로 투포인터가 더 효율적
+      function solution(arr1, arr2) {
+        const result = [];
+
+        let i = 0;
+        let j = 0;
+        while (i < arr1.length && j < arr2.length) {
+          if (arr1[i] <= arr2[j]) {
+            result.push(arr1[i]);
+            i++;
+          } else {
+            result.push(arr2[j]);
+            j++;
+          }
+        }
+
+        i === arr1.length
+          ? result.push(...arr2.slice(j))
+          : result.push(...arr1.slice(i));
+
+        return result;
+      }
+
+      let a = [1, 3, 5];
+      let b = [2, 3, 6, 7, 9];
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
