@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      // 투 포인터로 O(n) 만들기
+      function solution(m, arr) {
+        let count = 0;
+        let sum = 0;
+        let leftPoint = 0;
+
+        for (let rightPoint = 0; rightPoint < arr.length; rightPoint++) {
+          sum += arr[rightPoint];
+          if (sum === m) count++;
+          while (sum >= m) {
+            sum -= arr[leftPoint++];
+            if (sum === m) count++;
+          }
+        }
+
+        return count;
+      }
+
+      let a = [1, 2, 1, 3, 1, 1, 1, 2];
+      console.log(solution(6, a));
+    </script>
+  </body>
+</html>
