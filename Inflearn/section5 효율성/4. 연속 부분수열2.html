@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        let count = 0;
+        let sum = 0;
+        let leftPoint = 0;
+
+        for (let rightPoint = 0; rightPoint < arr.length; rightPoint++) {
+          sum += arr[rightPoint];
+          while (sum > m) {
+            sum -= arr[leftPoint++];
+          }
+          count += rightPoint - leftPoint + 1;
+        }
+
+        return count;
+      }
+
+      let a = [1, 3, 1, 2, 3];
+      console.log(solution(5, a));
+    </script>
+  </body>
+</html>
