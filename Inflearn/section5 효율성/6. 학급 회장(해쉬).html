@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let result = null;
+        let max = 0;
+
+        const obj = {};
+        for (let char of s) {
+          if (obj[char]) {
+            obj[char]++;
+          } else {
+            obj[char] = 1;
+          }
+        }
+        for (let key in obj) {
+          if (max < obj[key]) {
+            max = obj[key];
+            result = key;
+          }
+        }
+
+        return result;
+      }
+
+      let str = "BACBACCACCBDEDE";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
