@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str1, str2) {
+        const obj = {};
+
+        for (let char of str1) {
+          if (obj[char]) obj[char]++;
+          else obj[char] = 1;
+        }
+        for (let char of str2) {
+          if (!obj[char] || obj[char] === 0) return 'NO';
+          else obj[char]--;
+        }
+
+        return 'YES';
+      }
+
+      let a = 'AbaAeCe';
+      let b = 'baeeACA';
+      console.log(solution(a, b));
+
+      let c = 'abaCC';
+      let d = 'Caaab';
+      console.log(solution(c, d));
+    </script>
+  </body>
+</html>
