@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s, t) {
+        let count = 0;
+        const tLength = t.length;
+        const arr = []; // 어떤 str이 들어오는지 확인하기 위함
+
+        const isAnagram = (obj, str) => {
+          for (let char of str) {
+            if (!obj[char] || obj[char] === 0) return false;
+            else obj[char]--;
+          }
+          arr.push(str);
+          return true;
+        };
+
+        const obj = {};
+        for (let char of t) {
+          if (obj[char]) {
+            obj[char]++;
+          } else {
+            obj[char] = 1;
+          }
+        }
+
+        let checkObj = { ...obj };
+
+        for (let i = tLength; i <= s.length; i++) {
+          const candidate = s.slice(i - tLength, i);
+          if (isAnagram(checkObj, candidate)) {
+            count++;
+          }
+          checkObj = { ...obj };
+        }
+
+        console.log(arr);
+        return count;
+      }
+
+      let a = 'bacaAacba';
+      let b = 'abc';
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
