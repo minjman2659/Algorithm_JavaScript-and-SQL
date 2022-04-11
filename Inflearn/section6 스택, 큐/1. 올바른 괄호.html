@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const stack = [];
+
+        for (let bracket of s) {
+          if (bracket === "(") {
+            stack.push(")");
+          } else {
+            if (!stack.length) return "NO";
+            stack.pop();
+          }
+        }
+
+        return !stack.length ? "YES" : "NO";
+      }
+
+      let a = "(()(()))(()";
+      console.log(solution(a));
+      let b = "(())()";
+      console.log(solution(b));
+      let c = "(()()))";
+      console.log(solution(c));
+    </script>
+  </body>
+</html>
