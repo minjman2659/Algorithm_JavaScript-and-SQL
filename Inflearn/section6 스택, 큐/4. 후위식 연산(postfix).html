@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        const stack = [];
+        const operators = ['+', '-', '*', '/'];
+
+        const calculator = (num1, num2, operator) => {
+          let result;
+          switch (operator) {
+            case '+':
+              result = num2 + num1;
+              break;
+            case '-':
+              result = num2 - num1;
+              break;
+            case '*':
+              result = num2 * num1;
+              break;
+            case '/':
+              result = num2 / num1;
+              break;
+            default:
+              result = 0;
+          }
+          return result;
+        };
+
+        for (let char of s) {
+          if (!operators.includes(char)) {
+            stack.push(Number(char));
+          } else {
+            const num1 = stack.pop();
+            const num2 = stack.pop();
+            const calculated = calculator(num1, num2, char);
+            stack.push(calculated);
+          }
+        }
+
+        return stack[0];
+      }
+
+      let str = '352+*9-';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
