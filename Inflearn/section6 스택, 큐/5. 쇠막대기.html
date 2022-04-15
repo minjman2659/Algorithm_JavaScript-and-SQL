@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let result = 0;
+        const stack = [];
+
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === '(') {
+            stack.push(s[i]);
+          } else {
+            stack.pop();
+            s[i - 1] === '(' ? (result += stack.length) : result++;
+          }
+        }
+
+        return result;
+      }
+
+      let a = '()(((()())(())()))(())';
+      console.log(solution(a));
+      let b = '(((()(()()))(())()))(()())';
+      console.log(solution(b));
+    </script>
+  </body>
+</html>
