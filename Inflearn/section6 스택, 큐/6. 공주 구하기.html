@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k) {
+        const queue = new Array(n).fill(0).map((_, idx) => idx + 1);
+
+        while (queue.length > 1) {
+          for (let i = 1; i < k; i++) {
+            queue.push(queue.shift());
+          }
+          queue.shift(); // k번째만 그냥 shift 실행
+        }
+
+        return queue[0];
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>
