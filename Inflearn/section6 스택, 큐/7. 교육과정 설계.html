@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(need, plan) {
+        const queue = need.split('');
+
+        for (let char of plan) {
+          if (queue.includes(char)) {
+            const needChar = queue.shift();
+            if (needChar !== char) {
+              return 'NO';
+            }
+          }
+        }
+
+        return queue.length === 0 ? 'YES' : 'NO';
+      }
+
+      let a = 'CBA';
+      let b = 'CBDAGE';
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
