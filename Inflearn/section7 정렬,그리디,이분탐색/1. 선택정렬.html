@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        const result = arr;
+        let minIndex = 0;
+
+        const swap = (idx1, idx2) => {
+          const temp = arr[idx1];
+          arr[idx1] = arr[idx2];
+          arr[idx2] = temp;
+        };
+
+        for (let i = 0; i < arr.length; i++) {
+          minIndex = i;
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[minIndex]) {
+              minIndex = j;
+            }
+          }
+          swap(i, minIndex);
+        }
+
+        return result;
+      }
+
+      let arr = [13, 5, 11, 7, 23, 15];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
