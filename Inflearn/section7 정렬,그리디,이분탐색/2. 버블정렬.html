@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        const result = [...arr];
+
+        for (let i = 0; i < result.length - 1; i++) {
+          let isChanged = false;
+          for (let j = 0; j < result.length - 1 - i; j++) {
+            if (result[j] > result[j + 1]) {
+              [result[j], result[j + 1]] = [result[j + 1], result[j]];
+              isChanged = true;
+            }
+          }
+          if (!isChanged) break;
+        }
+
+        return result;
+      }
+
+      let arr = [13, 5, 11, 7, 23, 15];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
