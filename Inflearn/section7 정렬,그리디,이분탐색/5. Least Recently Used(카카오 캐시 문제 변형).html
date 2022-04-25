@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(size, arr) {
+        const cache = new Array(size).fill(0);
+
+        for (let num of arr) {
+          const index = cache.indexOf(num);
+          if (index !== -1) {
+            cache.splice(index, 1);
+            cache.unshift(num);
+          } else {
+            cache.pop();
+            cache.unshift(num); 
+          }
+        }
+
+        return cache;
+      }
+
+      let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+      console.log(solution(5, arr));
+    </script>
+  </body>
+</html>
