@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        const copied = JSON.parse(JSON.stringify(arr));
+
+        const sorted = copied.sort((a, b) => {
+          return a[0] === b[0] ? a[1] - b[1] : a[0] - b[0];
+        });
+
+        return sorted;
+      }
+
+      let arr = [
+        [2, 7],
+        [1, 3],
+        [1, 2],
+        [2, 5],
+        [3, 6],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
