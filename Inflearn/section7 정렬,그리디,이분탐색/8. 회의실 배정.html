@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(meeting) {
+        const copied = [...meeting];
+        copied.sort((a, b) => (a[1] === b[1] ? a[0] - b[0] : a[1] - b[1])); //* 끝나는 시간을 기준으로 정렬해야 함
+
+        let endTime = 0;
+        let count = 0;
+        for (let arr of copied) {
+          if (arr[0] >= endTime) {
+            count++;
+            endTime = arr[1];
+          }
+        }
+
+        return count;
+      }
+
+      let arr1 = [
+        [1, 4],
+        [2, 3],
+        [3, 5],
+        [4, 6],
+        [5, 7],
+      ];
+      console.log(solution(arr1));
+
+      let arr2 = [
+        [3, 3],
+        [1, 3],
+        [2, 3],
+      ];
+      console.log(solution(arr2));
+    </script>
+  </body>
+</html>
