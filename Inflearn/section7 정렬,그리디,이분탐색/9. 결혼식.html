@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(times) {
+        const copied = [...times];
+
+        const timeLine = [];
+        for (let time of times) {
+          timeLine.push([time[0], 's']);
+          timeLine.push([time[1], 'e']);
+        }
+        timeLine.sort((a, b) =>
+          a[0] === b[0] ? a[1].charCodeAt() - b[1].charCodeAt() : a[0] - b[0]
+        );
+
+        let result = 0;
+        let count = 0;
+        for (let time of timeLine) {
+          time[1] === 's' ? count++ : count--;
+          result = Math.max(result, count);
+        }
+
+        return result;
+      }
+
+      let arr = [
+        [14, 18],
+        [12, 15],
+        [15, 20],
+        [20, 30],
+        [5, 14],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
