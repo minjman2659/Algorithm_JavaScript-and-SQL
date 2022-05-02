@@ -6,8 +6,6 @@
   <body>
     <script>
       function solution(target, arr) {
-        let result = -1;
-
         const copied = [...arr];
         copied.sort((a, b) => a - b);
 
@@ -16,15 +14,15 @@
 
         while (maxIndex >= minIndex) {
           let midIndex = Math.floor((maxIndex + minIndex) / 2);
-          if (copied[maxIndex] === target) result = maxIndex + 1;
-          if (copied[minIndex] === target) result = minIndex + 1;
-          if (copied[midIndex] === target) result = midIndex + 1;
+          if (copied[maxIndex] === target) return maxIndex + 1;
+          if (copied[minIndex] === target) return minIndex + 1;
+          if (copied[midIndex] === target) return midIndex + 1;
           copied[midIndex] > target
             ? (maxIndex = midIndex - 1)
             : (minIndex = midIndex + 1);
         }
 
-        return result;
+        return -1;
       }
 
       let arr = [23, 87, 65, 12, 57, 32, 99, 81];
