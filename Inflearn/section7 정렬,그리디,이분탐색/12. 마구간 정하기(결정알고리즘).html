@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(c, stable) {
+        //* 구하고자 하는 것은 말 사이의 거리
+        //* 즉, min, mid, max 모두 말 사이의 거리라는 것을 기억하자.
+        let result = 0;
+        const copied = [...stable];
+        copied.sort((a, b) => a - b);
+
+        const counter = (distance) => {
+          let count = 1;
+          let compare = copied[0];
+          for (let i = 1; i < copied.length; i++) {
+            if (copied[i] - compare >= distance) {
+              count++;
+              compare = copied[i];
+            }
+          }
+          return count;
+        };
+
+        let max = copied[copied.length - 1];
+        let min = 1;
+
+        while (max >= min) {
+          const mid = Math.floor((max + min) / 2);
+          const count = counter(mid);
+          if (count >= c) {
+            result = mid;
+            min = mid + 1;
+          } else {
+            max = mid - 1;
+          }
+        }
+
+        return result;
+      }
+
+      let arr = [1, 2, 8, 4, 9];
+      console.log(solution(3, arr));
+    </script>
+  </body>
+</html>
