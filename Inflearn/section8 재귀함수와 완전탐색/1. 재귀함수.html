@@ -7,13 +7,13 @@
     <script>
       function solution(n) {
         const dfs = (num) => {
-          if (num === n + 1) {
+          if (num === 0) {
             return;
           }
+          dfs(num - 1);
           console.log(num);
-          dfs(num + 1);
         };
-        dfs(1);
+        dfs(n);
       }
 
       solution(3);
