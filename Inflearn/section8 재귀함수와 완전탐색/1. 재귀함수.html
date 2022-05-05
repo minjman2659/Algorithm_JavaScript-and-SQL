@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        const dfs = (num) => {
+          if (num === n + 1) {
+            return;
+          }
+          console.log(num);
+          dfs(num + 1);
+        };
+        dfs(1);
+      }
+
+      solution(3);
+    </script>
+  </body>
+</html>

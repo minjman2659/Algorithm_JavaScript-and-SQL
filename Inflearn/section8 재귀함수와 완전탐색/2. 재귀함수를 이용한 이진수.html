@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let result = '';
+
+        const makeBinaryNum = (num) => {
+          if (num === 0) {
+            return;
+          }
+          const share = Math.floor(num / 2);
+          const rest = num % 2;
+          result += rest;
+          makeBinaryNum(share);
+        };
+
+        makeBinaryNum(n);
+        return result;
+      }
+
+      console.log(solution(11));
+    </script>
+  </body>
+</html>
