@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let result1 = "";
+        let result2 = "";
+        let result3 = "";
+
+        //* 전위순회
+        const dfs1 = (node) => {
+          if (node > 7) {
+            return;
+          }
+          result1 += node;
+          dfs1(node * 2); // 왼쪽 자식 노드
+          dfs1(node * 2 + 1); // 오른쪽 자식 노드
+        };
+        dfs1(n);
+
+        //* 중위순회
+        const dfs2 = (node) => {
+          if (node > 7) {
+            return;
+          }
+          dfs2(node * 2);
+          result2 += node;
+          dfs2(node * 2 + 1);
+        };
+        dfs2(n);
+
+        //* 후위순회
+        const dfs3 = (node) => {
+          if (node > 7) {
+            return;
+          }
+          dfs3(node * 2);
+          dfs3(node * 2 + 1);
+          result3 += node;
+        };
+        dfs3(n);
+
+        return {
+          전위순회: result1,
+          중위순회: result2,
+          후위순회: result3,
+        };
+      }
+
+      console.log(solution(1));
+    </script>
+  </body>
+</html>
