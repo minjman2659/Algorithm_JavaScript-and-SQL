@@ -3,7 +3,7 @@ const powerSet = (arr) => {
   const result = [];
   const check = new Array(arr.length).fill(false);
 
-  const resultPush = (arr) => {
+  const makeResult = () => {
     const tmp = [];
     for (let i = 0; i < arr.length; i++) {
       if (check[i]) {
@@ -13,17 +13,18 @@ const powerSet = (arr) => {
     result.push(tmp);
   };
 
-  const checkArr = (startNum) => {
-    for (let i = startNum; i < arr.length; i++) {
-      check[i] = true;
-      resultPush(arr);
-      checkArr(i + 1);
-      check[i] = false;
+  const dfs = (index) => {
+    //* 탈출조건
+    if (index === arr.length) {
+      makeResult();
+    } else {
+      check[index] = true;
+      dfs(index + 1);
+      check[index] = false;
+      dfs(index + 1);
     }
   };
 
-  checkArr(0);
-  result.unshift([]);
-
+  dfs(0);
   return result;
 };
