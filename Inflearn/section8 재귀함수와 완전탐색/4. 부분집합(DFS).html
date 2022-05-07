@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        const result = [];
+        const check = new Array(n + 1).fill(false);
+
+        const makeResult = () => {
+          const temp = [];
+          for (let i = 1; i <= n; i++) {
+            if (check[i]) {
+              temp.push(i);
+            }
+          }
+          result.push(temp);
+        };
+
+        const dfs = (num) => {
+          //* 탈출조건
+          if (num === n + 1) {
+            makeResult();
+          } else {
+            check[num] = true;
+            dfs(num + 1);
+            check[num] = false;
+            dfs(num + 1);
+          }
+        };
+
+        dfs(1);
+        return result;
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
