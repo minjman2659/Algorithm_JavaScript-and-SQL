@@ -7,14 +7,19 @@
     <script>
       function solution(arr) {
         let result = false;
+        let flag = 0;
         const copied = [...arr];
         copied.sort((a, b) => a - b);
         const copiedSum = copied.reduce((acc, cur) => acc + cur, 0);
 
         const dfs = (index, sum) => {
+          if (flag) return; // 답이 이미 'YES'일 경우, 다른 것들은 전부 넘긴다.
           if (index === copied.length) {
             const isSame = sum === copiedSum - sum;
-            if (isSame) result = true;
+            if (isSame) {
+              result = true;
+              flag = 1;
+            }
           } else {
             dfs(index + 1, sum + copied[index]); // 해당 인덱스 요소를 사용할 경우
             dfs(index + 1, sum); // 사용하지 않을 경우
