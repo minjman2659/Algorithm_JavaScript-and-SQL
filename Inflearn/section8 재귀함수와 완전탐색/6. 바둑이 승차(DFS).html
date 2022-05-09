@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(c, arr) {
+        let result = 0;
+        const copied = [...arr];
+
+        const dfs = (index, sum) => {
+          if (sum > c) {
+            return;
+          }
+          if (index === copied.length) {
+            result = Math.max(result, sum);
+          } else {
+            dfs(index + 1, sum + copied[index]);
+            dfs(index + 1, sum);
+          }
+        };
+
+        dfs(0, 0);
+        return result;
+      }
+
+      let arr = [81, 58, 42, 33, 61];
+      console.log(solution(259, arr));
+    </script>
+  </body>
+</html>
