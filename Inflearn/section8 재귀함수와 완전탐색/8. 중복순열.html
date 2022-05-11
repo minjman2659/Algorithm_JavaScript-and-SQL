@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        const arr = new Array(n).fill(0).map((_, index) => index + 1);
+
+        const getOverlapPermutation = (arr, num) => {
+          let result = [];
+          if (num === 1) {
+            return arr.map((el) => [el]);
+          }
+          arr.forEach((fixed, idx, origin) => {
+            let rest = origin;
+            let combinations = getOverlapPermutation(rest, num - 1);
+            let attached = combinations.map((el) => [fixed, ...el]);
+            result.push(...attached);
+          });
+          return result;
+        };
+
+        const result = getOverlapPermutation(arr, m);
+
+        return result;
+      }
+
+      console.log(solution(3, 2));
+    </script>
+  </body>
+</html>
