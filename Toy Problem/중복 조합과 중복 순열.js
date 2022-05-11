@@ -19,7 +19,7 @@ const getOverlapPermutation = (arr, num) => {
   if (num === 1) {
     return arr.map((el) => [el]);
   }
-  arr.forEach((fixed, origin) => {
+  arr.forEach((fixed, idx, origin) => {
     let rest = origin;
     let combinations = getOverlapPermutation(rest, num - 1);
     let attached = combinations.map((el) => [fixed, ...el]);
