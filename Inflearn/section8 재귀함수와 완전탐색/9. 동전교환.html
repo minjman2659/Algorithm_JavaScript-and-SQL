@@ -6,30 +6,29 @@
   <body>
     <script>
       function solution(m, arr) {
-        let result = 0;
+        let result = Number.MAX_SAFE_INTEGER;
         const copied = [...arr];
-        copied.sort((a, b) => b - a);
 
-        const dfs = (index) => {
-          if (m === 0) {
-            return;
+        const dfs = (level, sum) => {
+          if (sum > m) return; // 탈출 조건 1
+          if (level >= result) return; // 탈출 조건 2
+          if (sum === m) {
+            // 정답 조건
+            result = Math.min(result, level);
           } else {
-            if (m - copied[index] < 0) {
-              dfs(index + 1);
-            } else {
-              m -= copied[index];
-              result++;
-              dfs(index);
+            for (let num of copied) {
+              dfs(level + 1, sum + num);
             }
           }
         };
 
-        dfs(0);
+        dfs(0, 0);
         return result;
       }
 
       let arr = [1, 2, 5];
       console.log(solution(15, arr));
+      console.log(solution(15, [1, 5, 12]));
     </script>
   </body>
 </html>
