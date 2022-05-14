@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        let result = 0;
+        const copied = [...arr];
+        copied.sort((a, b) => b - a);
+
+        const dfs = (index) => {
+          if (m === 0) {
+            return;
+          } else {
+            if (m - copied[index] < 0) {
+              dfs(index + 1);
+            } else {
+              m -= copied[index];
+              result++;
+              dfs(index);
+            }
+          }
+        };
+
+        dfs(0);
+        return result;
+      }
+
+      let arr = [1, 2, 5];
+      console.log(solution(15, arr));
+    </script>
+  </body>
+</html>
