@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        const getPermutation = (num, arr) => {
+          const result = [];
+          if (num === 1) {
+            return arr.map((el) => [el]);
+          }
+          arr.forEach((fixed, idx, origin) => {
+            const rest = origin.filter((_, index) => index !== idx);
+            const combination = getPermutation(num - 1, rest);
+            const attached = combination.map((el) => [fixed, ...el]);
+            result.push(...attached);
+          });
+          return result;
+        };
+
+        return getPermutation(m, arr);
+      }
+
+      let arr = [3, 6, 9];
+      console.log(solution(2, arr));
+    </script>
+  </body>
+</html>
