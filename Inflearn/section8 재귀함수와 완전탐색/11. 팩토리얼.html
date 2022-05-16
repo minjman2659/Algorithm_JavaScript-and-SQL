@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        const dfs = (num) => {
+          if (num === 1) {
+            return 1;
+          } else {
+            return num * dfs(num - 1);
+          }
+        };
+
+        return dfs(n);
+      }
+
+      console.log(solution(5));
+    </script>
+  </body>
+</html>
