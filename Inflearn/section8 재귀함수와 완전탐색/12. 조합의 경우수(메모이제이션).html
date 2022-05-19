@@ -9,7 +9,7 @@
         const memo = new Array(35).fill(0).map((el) => new Array(35).fill(0));
 
         const dfs = (n, r) => {
-          if (memo[n][r] > 0) return memo[n][r];
+          if (memo[n][r] > 0) return memo[n][r]; // 메모에 값이 존재한다면 바로 리턴
           if (r === 0 || n === r) {
             // 탈출조건 : 두 경우에는 값이 1
             return 1;
