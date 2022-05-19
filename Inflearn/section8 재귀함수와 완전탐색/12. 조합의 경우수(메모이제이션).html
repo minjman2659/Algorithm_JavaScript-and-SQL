@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, r) {
+        const memo = new Array(35).fill(0).map((el) => new Array(35).fill(0));
+
+        const dfs = (n, r) => {
+          if (memo[n][r] > 0) return memo[n][r];
+          if (r === 0 || n === r) {
+            // 탈출조건 : 두 경우에는 값이 1
+            return 1;
+          } else {
+            // 이미 가진 값은 memo에 저장
+            memo[n][r] = dfs(n - 1, r - 1) + dfs(n - 1, r);
+            return memo[n][r];
+          }
+        };
+
+        return dfs(n, r);
+      }
+
+      console.log(solution(5, 3));
+      console.log(solution(33, 19));
+    </script>
+  </body>
+</html>
