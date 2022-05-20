@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        const arr = new Array(n).fill(0).map((_, idx) => idx + 1);
+
+        const getComb = (arr, num) => {
+          const result = [];
+          if (num === 1) {
+            return arr.map((el) => [el]);
+          }
+          arr.forEach((fixed, idx, origin) => {
+            const rest = origin.slice(idx + 1);
+            const combinations = getComb(rest, num - 1);
+            const attached = combinations.map((el) => [fixed, ...el]);
+            result.push(...attached);
+          });
+          return result;
+        };
+
+        return getComb(arr, m);
+      }
+
+      console.log(solution(4, 2));
+    </script>
+  </body>
+</html>
