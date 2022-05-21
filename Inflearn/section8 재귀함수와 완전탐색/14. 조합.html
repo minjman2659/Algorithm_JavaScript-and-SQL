@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, m) {
+        const result = [];
+        const tmp = new Array(m).fill(0);
+
+        const dfs = (level, s) => {
+          if (level === m) {
+            result.push(tmp.slice());
+            return;
+          } else {
+            for (let i = s; i <= n; i++) {
+              tmp[level] = i;
+              dfs(level + 1, i + 1);
+            }
+          }
+        };
+
+        dfs(0, 1);
+        return result;
+      }
+
+      console.log(solution(4, 2));
+    </script>
+  </body>
+</html>
