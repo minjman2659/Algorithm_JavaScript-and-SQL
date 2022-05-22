@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, f) {
+        //* 조합과 관련된 문제! => n이 4라면, 3C0 / 3C1 / 3C2 / 3C3
+        const arr = new Array(n).fill(0).map((_, idx) => idx + 1);
+        const memo = new Array(n).fill(0).map((el) => new Array(n).fill(0));
+        const combSaveArr = [];
+
+        // 순열 구하기
+        const getPermut = (arr, num) => {
+          const permutResult = [];
+          if (num === 1) {
+            return arr.map((el) => [el]);
+          }
+          arr.forEach((fixed, idx, origin) => {
+            const rest = origin.filter((_, index) => index !== idx);
+            const combinations = getPermut(rest, num - 1);
+            const attached = combinations.map((el) => [fixed, ...el]);
+            permutResult.push(...attached);
+          });
+          return permutResult;
+        };
+
+        // 조합 구하기
+        const getComb = (level, n) => {
+          if (memo[level][n] > 0) return memo[level][n];
+          if (level === n || n === 0) {
+            return 1;
+          } else {
+            memo[level][n] = getComb(level - 1, n - 1) + getComb(level - 1, n);
+            return memo[level][n];
+          }
+        };
+
+        //* 미리 각 조합 값 저장해 놓기
+        for (let i = 0; i < n; i++) {
+          combSaveArr.push(getComb(n - 1, i));
+        }
+
+        const permut = getPermut(arr, n);
+
+        for (let per of permut) {
+          let candidate = 0;
+          for (let i = 0; i < n; i++) {
+            candidate += combSaveArr[i] * per[i];
+          }
+          if (candidate === f) {
+            return per;
+          }
+        }
+      }
+
+      console.log(solution(4, 16));
+    </script>
+  </body>
+</html>
