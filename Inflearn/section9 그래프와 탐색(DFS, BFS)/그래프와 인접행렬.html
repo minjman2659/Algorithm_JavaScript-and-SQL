@@ -6,11 +6,42 @@
   <body>
     <script>
       function solution(n, arr) {
-        const check = new Array(n+1).fill(false);
+        let count = 0;
+        const matrix = new Array(n + 1)
+          .fill(0)
+          .map((el) => new Array(n + 1).fill(0));
+        const check = new Array(n + 1).fill(false);
 
-        const bfs = () => {
-            
+        //* 인접행렬 만들기
+        for (let nodes of arr) {
+          matrix[nodes[0]][nodes[1]] = 1;
         }
+
+        check[1] = true;
+
+        const path = [1];
+
+        const dfs = (node) => {
+          if (node === n) {
+            count++;
+            console.log(path);
+            return;
+          } else {
+            for (let i = 1; i <= n; i++) {
+              if (!check[i] && matrix[node][i] === 1) {
+                check[i] = true;
+                path.push(i);
+                dfs(i);
+                check[i] = false;
+                path.pop();
+              }
+            }
+          }
+        };
+
+        dfs(1);
+
+        return count;
       }
 
       let arr = [
