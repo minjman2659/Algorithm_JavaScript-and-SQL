@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        const result = [];
+        const bfs = (node) => {
+          const queue = [node];
+          while (queue.length > 0) {
+            const now = queue.shift();
+            result.push(now);
+            for (let next of [now * 2, now * 2 + 1]) {
+              if (next <= n) queue.push(next);
+            }
+          }
+          return;
+        };
+
+        bfs(1);
+        return result;
+      }
+
+      console.log(solution(7));
+    </script>
+  </body>
+</html>
