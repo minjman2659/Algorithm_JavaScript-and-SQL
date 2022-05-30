@@ -6,7 +6,35 @@
   <body>
     <script>
       function solution(s, e) {
-        //* 다시 풀어보기!
+        const check = new Array(10001).fill(false);
+        let level = 0; // 트리의 단계
+
+        const checkBoundary = (point) => {
+          if (point > 0 && point <= 10000) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        const bfs = (n) => {
+          const queue = [n];
+          check[n] = true;
+          while (queue.length) {
+            const [now, level] = queue.shift();
+            for (let next of [now + 1, now - 1, now + 5]) {
+              if (next === e) {
+                return level + 1;
+              }
+              if (!check[next] && checkBoundary(next)) {
+                check[next] = true;
+                queue.push([next, level + 1]);
+              }
+            }
+          }
+        };
+
+        return bfs([s, 0]);
       }
 
       console.log(solution(5, 14));
