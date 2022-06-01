@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(board) {
+        let count = 0;
+        const xLength = board.length;
+        const yLength = board[0].length;
+        const dx = [-1, 1, 0, 0, -1, -1, 1, 1];
+        const dy = [0, 0, -1, 1, -1, 1, 1, -1];
+
+        const checkBoundary = (x, y) => {
+          if (x >= 0 && x < xLength && y >= 0 && y < yLength) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        const dfs = (x, y) => {
+          for (let i = 0; i < 8; i++) {
+            const nx = x + dx[i];
+            const ny = y + dy[i];
+            if (checkBoundary(nx, ny) && board[nx][ny] === 1) {
+              board[nx][ny] = 0;
+              dfs(nx, ny);
+            }
+          }
+        };
+
+        for (let i = 0; i < xLength; i++) {
+          for (let j = 0; j < yLength; j++) {
+            if (board[i][j] === 1) {
+              board[i][j] = 0;
+              dfs(i, j);
+              count++;
+            }
+          }
+        }
+
+        return count;
+      }
+
+      let arr = [
+        [1, 1, 0, 0, 0, 1, 0],
+        [0, 1, 1, 0, 1, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 1, 1],
+        [1, 1, 0, 1, 1, 0, 0],
+        [1, 0, 0, 0, 1, 0, 0],
+        [1, 0, 1, 0, 1, 0, 0],
+      ];
+
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
