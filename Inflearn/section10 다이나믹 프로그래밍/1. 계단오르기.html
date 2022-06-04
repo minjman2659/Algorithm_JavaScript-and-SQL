@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      //* 1. memoization : top-down 방식
+      function solution1(n) {
+        const memo = [0, 1, 2];
+
+        const memoization = (num) => {
+          if (memo[num]) {
+            return memo[num];
+          } else {
+            memo[num] = memoization(num - 1) + memoization(num - 2);
+            return memo[num];
+          }
+        };
+
+        return memoization(n);
+      }
+
+      //* 2. tabulation : bottom-up 방식
+      function solution2(n) {
+        const table = [0, 1, 2];
+
+        for (let i = 3; i <= n; i++) {
+          table[i] = table[i - 1] + table[i - 2];
+        }
+
+        return table[n];
+      }
+
+      //* 3. DFS로 푸는 방법
+      function solution3(n) {
+        let count = 0;
+
+        const dfs = (num) => {
+          if (num > n) {
+            return;
+          }
+          if (num === n) {
+            count++;
+            return;
+          } else {
+            dfs(num + 1);
+            dfs(num + 2);
+          }
+        };
+
+        dfs(0);
+        return count;
+      }
+
+      console.log(solution1(7));
+      console.log(solution2(7));
+      console.log(solution3(7));
+    </script>
+  </body>
+</html>
