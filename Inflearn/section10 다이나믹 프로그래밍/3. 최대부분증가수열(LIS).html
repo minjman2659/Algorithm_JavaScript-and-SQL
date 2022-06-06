@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let result = 0;
+        // LIS 배열은 각 요소들이 마지막 숫자로서 위치하는 LIS 값들을 모아놓은 배열
+        const LIS = new Array(arr.length).fill(1);
+        for (let i = 1; i < arr.length; i++) {
+          for (let j = 0; j < i; j++) {
+            if (arr[i] > arr[j]) {
+              LIS[i] = Math.max(LIS[i], LIS[j] + 1);
+            }
+          }
+          result = Math.max(result, LIS[i]);
+        }
+        console.log(LIS);
+        return result;
+      }
+
+      let arr1 = [5, 3, 7, 8, 6, 2, 9, 4]; // 4
+      let arr2 = [2, 7, 5, 8, 6, 4, 7, 12, 3]; // 5
+      console.log(solution(arr1));
+      console.log(solution(arr2));
+    </script>
+  </body>
+</html>
