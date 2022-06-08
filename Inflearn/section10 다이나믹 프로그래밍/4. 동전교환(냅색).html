@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, coin) {
+        //* changes[i] : i 금액을 거슬러 주는데 사용된 최소 동전 개수
+        const changes = new Array(m + 1).fill(1000);
+        changes[0] = 0;
+
+        for (let i = 0; i < coin.length; i++) {
+          for (let j = coin[i]; j <= m; j++) {
+            // changes[j-coin[i]] + 1 : +1의 의미는, 동전 한개는 사용하게 된다는 의미
+            changes[j] = Math.min(changes[j], changes[j - coin[i]] + 1);
+          }
+        }
+
+        console.log(changes);
+        return changes[m];
+      }
+
+      let arr = [1, 2, 5];
+      console.log(solution(15, arr));
+    </script>
+  </body>
+</html>
