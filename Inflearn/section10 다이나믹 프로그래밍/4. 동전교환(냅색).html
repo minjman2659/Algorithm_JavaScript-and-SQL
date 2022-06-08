@@ -12,7 +12,7 @@
 
         for (let i = 0; i < coin.length; i++) {
           for (let j = coin[i]; j <= m; j++) {
-            // changes[j-coin[i]] + 1 : +1의 의미는, 동전 한개는 사용하게 된다는 의미
+            // changes[j-coin[i]] + 1 : +1의 의미는, coin의 i번째에 해당되는 동전 한개는 사용하게 된다는 의미
             changes[j] = Math.min(changes[j], changes[j - coin[i]] + 1);
           }
         }
