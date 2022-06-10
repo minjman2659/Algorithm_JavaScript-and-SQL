@@ -9,6 +9,7 @@
         const maxScoreEachTime = new Array(m + 1).fill(0);
 
         for (let [score, time] of arr) {
+          // 각 유형의 문제는 한번만 풀 수 있기 때문에 i는 뒤에서부터 0 index로 거꾸로 돌아야 한다!
           for (let i = m; i >= time; i--) {
             maxScoreEachTime[i] = Math.max(
               maxScoreEachTime[i],
