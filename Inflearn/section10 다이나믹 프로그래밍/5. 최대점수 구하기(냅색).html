@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        const maxScoreEachTime = new Array(m + 1).fill(0);
+
+        for (let [score, time] of arr) {
+          for (let i = m; i >= time; i--) {
+            maxScoreEachTime[i] = Math.max(
+              maxScoreEachTime[i],
+              maxScoreEachTime[i - time] + score
+            );
+          }
+          console.log(maxScoreEachTime);
+        }
+
+        return maxScoreEachTime[m];
+      }
+
+      let arr = [
+        [10, 5],
+        [25, 12],
+        [15, 8],
+        [6, 3],
+        [7, 4],
+      ];
+      console.log(solution(20, arr));
+    </script>
+  </body>
+</html>
