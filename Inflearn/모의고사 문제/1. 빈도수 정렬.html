@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str) {
+        const map = new Map();
+        for (let char of str) {
+          map.set(char, (map.get(char) || 0) + 1);
+        }
+
+        const arr = [...map];
+        arr.sort((a, b) => b[1] - a[1]);
+
+        let result = '';
+        for (let [key, count] of arr) {
+          const value = key.repeat(count);
+          result += value;
+        }
+
+        return result;
+      }
+
+      console.log(solution('aaAAcccbbbBB'));
+      console.log(solution('kdkDKKGkdkgks'));
+      console.log(solution('ckdowiskjgwigAGD'));
+      console.log(solution('dkjgkdkjglkdjg'));
+      console.log(solution('dkjgskjgkDKJGSKGKSG'));
+    </script>
+  </body>
+</html>
