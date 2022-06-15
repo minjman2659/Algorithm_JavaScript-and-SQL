@@ -6,27 +6,13 @@
   <body>
     <script>
       function solution1(nums, edges, k) {
-        let answer = 0;
-        let n = nums.length;
-        let graph = Array.from(Array(n), () => Array());
-        let ch = new Array(n).fill(0);
-        for (let [a, b, c] of edges) {
-          graph[a].push([b, c]);
-          graph[b].push([a, c]);
-        }
+        let result = 0;
 
-        function DFS(cur, time, sum) {
-          if (time < 0) return;
-          ch[cur]++;
-          if (ch[cur] === 1) sum += nums[cur];
-          if (cur === 0) answer = Math.max(answer, sum);
-          for (let [nv, cost] of graph[cur]) {
-            DFS(nv, time - cost, sum);
+        const dfs = (node, time, sum) => {
+          if (time > k) {
+            return;
           }
-          ch[cur]--;
-        }
-        DFS(0, k, 0);
-        return answer;
+        };
       }
 
       console.log(
