@@ -5,14 +5,29 @@
   </head>
   <body>
     <script>
-      function solution1(nums, edges, k) {
+      function solution(nums, edges, k) {
         let result = 0;
+        const adjency = new Array(nums.length).fill(0).map((el) => new Array());
+        const check = new Array(nums.length).fill(0);
+
+        for (let [node1, node2, edge] of edges) {
+          adjency[node1].push([node2, edge]);
+          adjency[node2].push([node1, edge]);
+        }
 
         const dfs = (node, time, sum) => {
-          if (time > k) {
-            return;
+          if (time < 0) return;
+          check[node]++;
+          if (check[node] === 1) sum += nums[node];
+          if (node === 0) result = Math.max(result, sum);
+          for (let [next, cost] of adjency[node]) {
+            dfs(next, time - cost, sum);
           }
+          check[node]--;
         };
+
+        dfs(0, k, 0);
+        return result;
       }
 
       console.log(
