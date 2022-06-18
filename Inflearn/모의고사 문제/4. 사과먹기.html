@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let level = 0;
+        const check = new Map(); // 체킹 배열 => 제한 수가 20억이 넘어가므로 해쉬 맵으로 체킹 배열 구현
+        check.set(n, true);
+
+        const bfs = (appleNum) => {
+          const queue = [appleNum];
+          while (queue.length) {
+            const leng = queue.length;
+            for (let i = 0; i < leng; i++) {
+              const now = queue.shift();
+              if (now === 0) return level;
+              if (!check.has(now - 1)) {
+                check.set(now - 1, true);
+                queue.push(now - 1);
+              }
+              if (now % 2 === 0 && !check.has(now / 2)) {
+                check.set(now / 2, true);
+                queue.push(now / 2);
+              }
+              if (now % 3 === 0 && !check.has(now / 3)) {
+                check.set(now / 3, true);
+                queue.push(now / 3);
+              }
+            }
+            level++;
+          }
+        };
+
+        return bfs(n);
+      }
+
+      console.log(solution(25)); //6
+      console.log(solution(101)); //9
+      console.log(solution(10000)); //15
+      console.log(solution(1000001)); //21
+      console.log(solution(213456)); //17
+      console.log(solution(456789)); //21
+      console.log(solution(1900000000)); //30
+      console.log(solution(2147485)); //22
+      console.log(solution(17)); //6
+      console.log(solution(97)); //8
+    </script>
+  </body>
+</html>
