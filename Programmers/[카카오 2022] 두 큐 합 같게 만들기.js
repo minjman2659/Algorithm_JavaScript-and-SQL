@@ -4,7 +4,7 @@ function solution(queue1, queue2) {
   const totalQueue = [...queue1, ...queue2];
   const totalSum = totalQueue.reduce((acc, cur) => acc + cur, 0);
   const target = totalSum / 2;
-  const maxCount = totalQueue.length * 2; // <- 충분히 커야한다? 솔직히 얼마로 잡아야 하는지는 모르겠다.
+  const maxCount = totalQueue.length * 3; // <- 충분히 커야한다? 솔직히 얼마로 잡아야 하는지는 모르겠다.
 
   let start = 0;
   let end = queue1.length;
