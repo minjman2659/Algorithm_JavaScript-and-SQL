@@ -6,22 +6,20 @@
   <body>
     <script>
       function solution(n, arr) {
-        let count = 0;
+        const adjList = new Array(n + 1).fill(0).map((el) => []);
         const check = new Array(n + 1).fill(false);
-        const adjacencyList = new Array(n + 1).fill(0).map((el) => []);
-
-        for (let [node1, node2] of arr) {
-          adjacencyList[node1].push(node2);
-        }
-
         check[1] = true;
+        arr.forEach((nodes) => {
+          adjList[nodes[0]].push(nodes[1]);
+        });
 
+        let count = 0;
         const dfs = (node) => {
           if (node === n) {
             count++;
             return;
           } else {
-            for (let next of adjacencyList[node]) {
+            for (let next of adjList[node]) {
               if (!check[next]) {
                 check[next] = true;
                 dfs(next);
