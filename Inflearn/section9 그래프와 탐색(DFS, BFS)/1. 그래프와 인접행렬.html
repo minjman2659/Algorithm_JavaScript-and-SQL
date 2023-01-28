@@ -16,7 +16,6 @@
         });
 
         let count = 0;
-        const path = [1];
         const dfs = (node) => {
           if (node === n) {
             count++;
@@ -25,10 +24,8 @@
             for (let next = 1; next <= n; next++) {
               if (!check[next] && matrix[node][next] === 1) {
                 check[next] = true;
-                path.push(next);
                 dfs(next);
                 check[next] = false;
-                path.pop();
               }
             }
           }

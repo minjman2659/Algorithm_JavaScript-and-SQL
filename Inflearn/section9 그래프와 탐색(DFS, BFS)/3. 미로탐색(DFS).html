@@ -14,8 +14,9 @@
         const checkBoundary = (x, y) => {
           if (x >= 0 && x < length && y >= 0 && y < length) {
             return true;
+          } else {
+            return false;
           }
-          return false;
         };
 
         const dfs = (x, y) => {
@@ -34,6 +35,7 @@
             }
           }
         };
+
         board[0][0] = 1;
         dfs(0, 0);
 
