@@ -7,13 +7,16 @@
     <script>
       function solution(n) {
         const result = [];
+
         const bfs = (node) => {
           const queue = [node];
           while (queue.length > 0) {
             const now = queue.shift();
             result.push(now);
             for (let next of [now * 2, now * 2 + 1]) {
-              if (next <= n) queue.push(next);
+              if (next <= n) {
+                queue.push(next);
+              }
             }
           }
           return;
