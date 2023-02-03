@@ -7,19 +7,19 @@
     <script>
       // Sliding window 알고리즘 => 반복문 한번으로 끝나는 알고리즘 O(n)
       function solution(k, arr) {
-        let result = arr.slice(0, k).reduce((acc, cur) => acc + cur, 0);
-        let sum = result;
+        let result = 0;
+        let sum = arr.slice(0, k).reduce((acc, cur) => acc + cur, 0);
 
         for (let i = k; i < arr.length; i++) {
-          sum += arr[i] - arr[i - k];
+          sum = sum + arr[i] - arr[i - k];
           result = Math.max(result, sum);
         }
 
         return result;
       }
 
-      let a = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
-      console.log(solution(3, a));
+      let arr = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+      console.log(solution(3, arr));
     </script>
   </body>
 </html>
