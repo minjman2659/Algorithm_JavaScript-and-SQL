@@ -15,9 +15,8 @@
         const checkBoundary = (x, y) => {
           if (x >= 0 && x < xLength && y >= 0 && y < yLength) {
             return true;
-          } else {
-            return false;
           }
+          return false;
         };
 
         const dfs = (x, y) => {
@@ -31,11 +30,11 @@
           }
         };
 
-        for (let i = 0; i < xLength; i++) {
-          for (let j = 0; j < yLength; j++) {
-            if (board[i][j] === 1) {
-              board[i][j] = 0;
-              dfs(i, j);
+        for (let x = 0; x < xLength; x++) {
+          for (let y = 0; y < yLength; y++) {
+            if (board[x][y] === 1) {
+              board[x][y] = 0;
+              dfs(x, y);
               count++;
             }
           }

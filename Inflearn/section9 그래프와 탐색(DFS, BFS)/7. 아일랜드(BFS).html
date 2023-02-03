@@ -15,18 +15,17 @@
         const checkBoundary = (x, y) => {
           if (x >= 0 && x < xLength && y >= 0 && y < yLength) {
             return true;
-          } else {
-            return false;
           }
+          return false;
         };
 
         const bfs = (x, y) => {
           const queue = [[x, y]];
-          while (queue.length) {
-            const [px, py] = queue.shift();
+          while (queue.length > 0) {
+            const [nowX, nowY] = queue.shift();
             for (let i = 0; i < 8; i++) {
-              const nx = px + dx[i];
-              const ny = py + dy[i];
+              const nx = nowX + dx[i];
+              const ny = nowY + dy[i];
               if (checkBoundary(nx, ny) && board[nx][ny] === 1) {
                 board[nx][ny] = 0;
                 queue.push([nx, ny]);

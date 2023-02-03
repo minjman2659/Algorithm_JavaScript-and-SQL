@@ -7,27 +7,24 @@
     <script>
       function solution(s, e) {
         const check = new Array(10001).fill(false);
-        let level = 0; //* 트리의 단계
 
-        const checkBoundary = (point) => {
-          if (point > 0 && point <= 10000) {
+        const checkBoundary = (node) => {
+          if (node > 0 && node <= 10000) {
             return true;
-          } else {
-            return false;
           }
+          return false;
         };
 
-        const bfs = ([n, L]) => {
-          const queue = [[n, L]];
-          check[n] = true;
-          while (queue.length) {
+        const bfs = ([n, l]) => {
+          const queue = [[n, l]];
+          while (queue.length > 0) {
             const [now, level] = queue.shift();
-            for (let next of [now + 1, now - 1, now + 5]) {
+            check[now] = true;
+            for (let next of [now - 1, now + 1, now + 5]) {
               if (next === e) {
                 return level + 1;
               }
               if (!check[next] && checkBoundary(next)) {
-                check[next] = true;
                 queue.push([next, level + 1]);
               }
             }
