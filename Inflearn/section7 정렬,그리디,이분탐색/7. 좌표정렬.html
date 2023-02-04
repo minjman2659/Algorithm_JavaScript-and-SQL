@@ -6,13 +6,7 @@
   <body>
     <script>
       function solution(arr) {
-        const copied = [...arr];
-
-        const sorted = copied.sort((a, b) => {
-          return a[0] === b[0] ? a[1] - b[1] : a[0] - b[0];
-        });
-
-        return sorted;
+        return arr.sort((a, b) => (a[0] === b[0] ? a[1] - b[1] : a[0] - b[0]));
       }
 
       let arr = [
