@@ -6,15 +6,15 @@
   <body>
     <script>
       function solution(meeting) {
-        const copied = [...meeting];
-        copied.sort((a, b) => (a[1] === b[1] ? a[0] - b[0] : a[1] - b[1])); //* 끝나는 시간을 기준으로 정렬해야 함
-
-        let endTime = 0;
-        let count = 0;
-        for (let arr of copied) {
-          if (arr[0] >= endTime) {
+        const copied = JSON.parse(JSON.stringify(meeting)).sort((a, b) =>
+          a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]
+        );
+        let count = 1;
+        let endTime = copied[0][1];
+        for (let i = 1; i < copied.length; i++) {
+          if (endTime <= copied[i][0]) {
             count++;
-            endTime = arr[1];
+            endTime = copied[i][1];
           }
         }
 
