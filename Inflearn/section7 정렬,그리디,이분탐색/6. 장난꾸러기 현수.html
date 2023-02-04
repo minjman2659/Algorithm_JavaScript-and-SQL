@@ -7,11 +7,10 @@
     <script>
       function solution(arr) {
         const result = [];
-        const copied = [...arr];
+        const copiedSort = [...arr].sort((a, b) => a - b);
 
-        const sorted = copied.sort((a, b) => a - b);
-        for (let i = 0; i < sorted.length; i++) {
-          if (arr[i] !== sorted[i]) {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] !== copiedSort[i]) {
             result.push(i + 1);
           }
         }
