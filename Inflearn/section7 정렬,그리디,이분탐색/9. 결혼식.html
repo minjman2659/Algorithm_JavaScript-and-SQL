@@ -6,24 +6,22 @@
   <body>
     <script>
       function solution(times) {
-        const copied = [...times];
-
         const timeLine = [];
-        for (let time of times) {
+        times.forEach((time) => {
           timeLine.push([time[0], 's']);
           timeLine.push([time[1], 'e']);
-        }
-        //* e가 s보다 먼저 오도록 정렬
+        });
+
         timeLine.sort((a, b) =>
           a[0] === b[0] ? a[1].charCodeAt() - b[1].charCodeAt() : a[0] - b[0]
-        );
+        ); // 타임라인을 생각해보았을 때, 만약 시간대가 같다면 'e'가 먼저 와야하기 때문!
 
-        let result = 0;
         let count = 0;
-        for (let time of timeLine) {
+        let result = 0;
+        timeLine.forEach((time) => {
           time[1] === 's' ? count++ : count--;
-          result = Math.max(result, count);
-        }
+          result = Math.max(count, result);
+        });
 
         return result;
       }
