@@ -8,31 +8,29 @@
       function solution(c, stable) {
         //* 구하고자 하는 것은 말 사이의 거리
         //* 즉, min, mid, max 모두 말 사이의 거리라는 것을 기억하자.
-        let result = 0;
-        const copied = [...stable];
-        copied.sort((a, b) => a - b);
+        const copiedSort = [...stable].sort((a, b) => a - b);
 
         const counter = (distance) => {
           let count = 1;
-          let compare = copied[0];
-          for (let i = 1; i < copied.length; i++) {
-            if (copied[i] - compare >= distance) {
+          let compare = copiedSort[0];
+          for (let i = 1; i < copiedSort.length; i++) {
+            if (copiedSort[i] - compare >= distance) {
               count++;
-              compare = copied[i];
+              compare = copiedSort[i];
             }
           }
           return count;
         };
 
-        let max = copied[copied.length - 1] - copied[0];
-        let min = 1;
-
-        while (max >= min) {
-          const mid = Math.floor((max + min) / 2);
+        let result = 0;
+        let max = copiedSort[copiedSort.length - 1] - copiedSort[0];
+        let min = 0;
+        while (min <= max) {
+          const mid = parseInt((max + min) / 2);
           const count = counter(mid);
           if (count >= c) {
-            result = mid;
             min = mid + 1;
+            result = mid;
           } else {
             max = mid - 1;
           }
