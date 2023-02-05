@@ -6,32 +6,29 @@
   <body>
     <script>
       function solution(m, songs) {
-        let result = 0;
-        const copied = [...songs];
-
         const counter = (capacity) => {
           let count = 1;
           let sum = 0;
-          for (let song of copied) {
+          songs.forEach((song) => {
             if (sum + song <= capacity) {
               sum += song;
             } else {
-              sum = song;
               count++;
+              sum = song;
             }
-          }
+          });
           return count;
         };
 
-        let max = copied.reduce((acc, cur) => acc + cur, 0);
-        let min = Math.max(...copied);
-
-        while (max >= min) {
-          let mid = Math.floor((max + min) / 2);
+        let result = 0;
+        let max = songs.reduce((acc, cur) => acc + cur, 0);
+        let min = Math.max(...songs);
+        while (min <= max) {
+          const mid = parseInt((max + min) / 2);
           const count = counter(mid);
           if (count <= m) {
-            result = mid;
             max = mid - 1;
+            result = mid;
           } else {
             min = mid + 1;
           }
