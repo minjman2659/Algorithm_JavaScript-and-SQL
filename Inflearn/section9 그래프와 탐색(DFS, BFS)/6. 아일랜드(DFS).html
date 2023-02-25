@@ -7,13 +7,12 @@
     <script>
       function solution(board) {
         let count = 0;
-        const xLength = board.length;
-        const yLength = board[0].length;
-        const dx = [-1, 1, 0, 0, -1, -1, 1, 1];
-        const dy = [0, 0, -1, 1, -1, 1, 1, -1];
+        const length = board.length;
+        const dx = [-1, -1, -1, 0, 1, 1, 1, 0];
+        const dy = [-1, 0, 1, 1, 1, 0, -1, -1];
 
         const checkBoundary = (x, y) => {
-          if (x >= 0 && x < xLength && y >= 0 && y < yLength) {
+          if (x >= 0 && x < length && y >= 0 && y < length) {
             return true;
           }
           return false;
@@ -21,19 +20,18 @@
 
         const dfs = (x, y) => {
           for (let i = 0; i < 8; i++) {
+            board[x][y] = 0;
             const nx = x + dx[i];
             const ny = y + dy[i];
             if (checkBoundary(nx, ny) && board[nx][ny] === 1) {
-              board[nx][ny] = 0;
               dfs(nx, ny);
             }
           }
         };
 
-        for (let x = 0; x < xLength; x++) {
-          for (let y = 0; y < yLength; y++) {
+        for (let x = 0; x < length; x++) {
+          for (let y = 0; y < length; y++) {
             if (board[x][y] === 1) {
-              board[x][y] = 0;
               dfs(x, y);
               count++;
             }
