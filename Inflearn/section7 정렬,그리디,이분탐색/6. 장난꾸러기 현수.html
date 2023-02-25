@@ -7,8 +7,7 @@
     <script>
       function solution(arr) {
         const result = [];
-        const copiedSort = [...arr].sort((a, b) => a - b);
-
+        const copiedSort = arr.slice().sort((a, b) => a - b);
         for (let i = 0; i < arr.length; i++) {
           if (arr[i] !== copiedSort[i]) {
             result.push(i + 1);

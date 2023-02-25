@@ -6,15 +6,16 @@
   <body>
     <script>
       function solution(meeting) {
-        const copied = JSON.parse(JSON.stringify(meeting)).sort((a, b) =>
+        let count = 1;
+        const copiedSort = JSON.parse(JSON.stringify(meeting)).sort((a, b) =>
           a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]
         );
-        let count = 1;
-        let endTime = copied[0][1];
-        for (let i = 1; i < copied.length; i++) {
-          if (endTime <= copied[i][0]) {
+
+        let endTime = copiedSort[0][1];
+        for (let i = 1; i < copiedSort.length; i++) {
+          if (endTime <= copiedSort[i][0]) {
+            endTime = copiedSort[i][1];
             count++;
-            endTime = copied[i][1];
           }
         }
 

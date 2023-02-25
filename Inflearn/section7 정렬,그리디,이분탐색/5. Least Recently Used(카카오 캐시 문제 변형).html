@@ -6,20 +6,18 @@
   <body>
     <script>
       function solution(size, arr) {
-        const cacheMemory = new Array(size).fill(0);
-
-        for (let num of arr) {
-          const numIndex = cacheMemory.findIndex((el) => el === num);
-          if (numIndex !== -1) {
-            cacheMemory.splice(numIndex, 1);
-            cacheMemory.unshift(num);
+        const cache = new Array(size).fill(0);
+        arr.forEach((work) => {
+          const index = cache.findIndex((el) => el === work);
+          if (index !== -1) {
+            cache.splice(index, 1);
           } else {
-            cacheMemory.pop();
-            cacheMemory.unshift(num);
+            cache.pop();
           }
-        }
+          cache.unshift(work);
+        });
 
-        return cacheMemory;
+        return cache;
       }
 
       let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
