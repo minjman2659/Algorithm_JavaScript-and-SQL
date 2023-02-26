@@ -8,7 +8,7 @@
       function solution(c, stable) {
         //* 구하고자 하는 것은 말 사이의 거리
         //* 즉, min, mid, max 모두 말 사이의 거리라는 것을 기억하자.
-        const copiedSort = [...stable].sort((a, b) => a - b);
+        const copiedSort = stable.slice().sort((a, b) => a - b);
 
         const counter = (distance) => {
           let count = 1;
