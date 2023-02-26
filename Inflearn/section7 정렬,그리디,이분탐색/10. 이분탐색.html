@@ -6,22 +6,19 @@
   <body>
     <script>
       function solution(target, arr) {
-        const copiedSort = [...arr].sort((a, b) => a - b);
-        let maxIndex = copiedSort.length - 1;
-        let minIndex = 0;
+        const copiedSort = arr.slice().sort((a, b) => a - b);
+        let min = 0;
+        let max = copiedSort.length - 1;
 
-        while (minIndex <= maxIndex) {
-          const midIndex = parseInt((maxIndex + minIndex) / 2);
-          if (copiedSort[maxIndex] === target) return maxIndex + 1;
-          if (copiedSort[minIndex] === target) return minIndex + 1;
-          if (copiedSort[midIndex] === target) return midIndex + 1;
-
-          if (copiedSort[midIndex] > target) {
-            maxIndex = midIndex - 1;
-          } else {
-            minIndex = midIndex + 1;
-          }
+        while (min <= max) {
+          const mid = parseInt((max + min) / 2);
+          if (copiedSort[min] === target) return min + 1;
+          if (copiedSort[max] === target) return max + 1;
+          if (copiedSort[mid] === target) return mid + 1;
+          copiedSort[mid] > target ? (max = mid - 1) : (min = mid + 1);
         }
+
+        return -1;
       }
 
       let arr = [23, 87, 65, 12, 57, 32, 99, 81];
