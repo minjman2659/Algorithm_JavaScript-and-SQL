@@ -1,0 +1,8 @@
+-- https://school.programmers.co.kr/learn/courses/30/lessons/164670#qna
+
+SELECT u.USER_ID, u.NICKNAME, CONCAT(u.CITY, ' ', u.STREET_ADDRESS1, u.STREET_ADDRESS2) AS 전체주소,
+       CONCAT(LEFT(u.TLNO, 3), '-', SUBSTRING(u.TLNO, 4, 4), '-', RIGHT(u.TLNO,4)) AS 전화번호
+FROM USED_GOODS_BOARD b INNER JOIN USED_GOODS_USER u ON b.WRITER_ID = u.USER_ID
+GROUP BY u.USER_ID
+HAVING COUNT(u.USER_ID) >= 3
+ORDER BY u.USER_ID DESC
