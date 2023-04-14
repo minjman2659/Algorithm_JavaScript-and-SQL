@@ -18,7 +18,7 @@ function solution(sequence, k) {
   // 현재까지의 합이 K보다 작으면 right를 +1씩 올린다.
   // 아니라면 left를 +1씩 올린다.
   while (left <= right) {
-    let sum = prefix[right] - prefix[left]; // sequence[left] 부터 sequence[right-1]까지의 수열의 합.
+    const sum = prefix[right] - prefix[left]; // sequence[left] 부터 sequence[right-1]까지의 수열의 합.
     if (sum === k) {
       // 정답수열을 찾았을때 수열의 길이를 체크하고 가장 작은길이의 수열로 변환.
       let temp = right - 1 - left;
