@@ -17,7 +17,7 @@ function solution(plans) {
 
   while (queue.length) {
     const target = queue.shift();
-    const [name, time, spend] = target;
+    const time = target[1];
     let timeDiff = time - curTime;
     curTime = time;
 
